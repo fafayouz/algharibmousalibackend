@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 app.use('/Api' , route)
 dotenv.config();
 
-const PORT = process.env.PORT || 8001;
+const PORT = process.env.PORT || 3000;
 const CONNECTION_URL = process.env.CONNECTION_URL;
 
 mongoose
