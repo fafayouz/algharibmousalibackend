@@ -12,8 +12,8 @@ const upload = multer({storage: fileStorageEngine})
 
 const router = express.Router();
 
-router.post('/CreatePost' , upload.array('photos',5),CreatePost)
-router.post('/CreateTrust' , upload.array('photos',5),CreateTrust)
+router.post('/CreatePost' , upload.single('image'),CreatePost)
+router.post('/CreateTrust' , upload.single('image'),CreateTrust)
 router.post('/CreateFatwa' , upload.array('photos',5),CreateFatwa)
 router.get('/GetPosts' , GetAllPosts)
 router.get('/GetFatwa' , GetFatwa)

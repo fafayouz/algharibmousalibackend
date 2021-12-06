@@ -1,14 +1,18 @@
 const PostArticle = require('../models/Posts');
 const PostAudio = require('../models/Audio');
+const cloudinary = require("../utils/cloudinary");
+const upload = require("../utils/multer")
 
 
+module.exports.CreatePost = async (req , res) => {
+    try {
+    const result = await cloudinary.uploader.upload(req.file.path)
 
-module.exports.CreatePost = (req , res) => {
-    const file = req.files
     const NewPost = new PostArticle();
     NewPost.title = req.body.title 
     NewPost.article = req.body.article
-    NewPost.images = file;
+    NewPost.image = result.secure_url;
+    NewPost.cloudinary_id = result.public_id
 
 
 
@@ -18,6 +22,9 @@ module.exports.CreatePost = (req , res) => {
     .catch(err => {
         res.status(400).json({err : true , message : err})
     })
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 module.exports.GetAllPosts = async (req , res ) => {
