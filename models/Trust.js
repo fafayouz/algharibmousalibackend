@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 
 const TrustSchema = mongoose.Schema({
-    images: String,
+    image: String,
 })
 
 

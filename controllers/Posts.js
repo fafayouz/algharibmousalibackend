@@ -6,13 +6,12 @@ const upload = require("../utils/multer")
 
 module.exports.CreatePost = async (req , res) => {
     try {
-    const result = await cloudinary.uploader.upload(req.file.path)
-
+        const file = req.file
+        
     const NewPost = new PostArticle();
     NewPost.title = req.body.title 
     NewPost.article = req.body.article
-    NewPost.image = result.secure_url;
-    NewPost.cloudinary_id = result.public_id
+    NewPost.image = file.filename;
 
 
 
